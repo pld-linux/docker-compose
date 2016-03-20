@@ -5,7 +5,7 @@
 Summary:	Multi-container orchestration for Docker
 Name:		docker-compose
 Version:	1.6.2
-Release:	1
+Release:	2
 License:	Apache v2.0
 Source0:	https://pypi.python.org/packages/source/d/docker-compose/%{name}-%{version}.tar.gz
 # Source0-md5:	1c80fd99f2dc393e8ac5313c9a2fa4c7
@@ -23,18 +23,8 @@ BuildRequires:	python-websocket-client
 %endif
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.714
-Requires:	python-PyYAML
-Requires:	python-cached_property
 Requires:	python-docker >= 1.7.0
 Requires:	python-dockerpty >= 0.4.1
-Requires:	python-docopt
-Requires:	python-enum34
-Requires:	python-jsonschema
-Requires:	python-requests
-Requires:	python-setuptools
-Requires:	python-six
-Requires:	python-texttable
-Requires:	python-websocket-client
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
