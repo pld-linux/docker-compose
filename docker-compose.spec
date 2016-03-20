@@ -14,7 +14,7 @@ URL:		https://docs.docker.com/compose/
 Patch0:		remove-requires-upper-bound.patch
 %if %{with tests}
 BuildRequires:	python-PyYAML
-BuildRequires:	python-docker-py
+BuildRequires:	python-docker
 BuildRequires:	python-docopt
 BuildRequires:	python-requests
 BuildRequires:	python-setuptools
@@ -25,10 +25,8 @@ BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.714
 Requires:	python-PyYAML
 Requires:	python-cached_property
-# Version required due to upstream requirement; see BZ#1300106
-Requires:	python-docker-py >= 1.7.0-1
-# Version required due to upstream requirement; see BZ#1300106
-Requires:	python-dockerpty >= 0.4.1-1
+Requires:	python-docker >= 1.7.0
+Requires:	python-dockerpty >= 0.4.1
 Requires:	python-docopt
 Requires:	python-enum34
 Requires:	python-jsonschema
