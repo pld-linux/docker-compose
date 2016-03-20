@@ -23,8 +23,6 @@ BuildRequires:	python-websocket-client
 %endif
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.714
-Requires:	python-docker >= 1.7.0
-Requires:	python-dockerpty >= 0.4.1
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
