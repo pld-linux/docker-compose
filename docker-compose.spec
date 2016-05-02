@@ -4,11 +4,11 @@
 
 Summary:	Multi-container orchestration for Docker
 Name:		docker-compose
-Version:	1.6.2
-Release:	2
+Version:	1.7.0
+Release:	1
 License:	Apache v2.0
 Source0:	https://pypi.python.org/packages/source/d/docker-compose/%{name}-%{version}.tar.gz
-# Source0-md5:	1c80fd99f2dc393e8ac5313c9a2fa4c7
+# Source0-md5:	7d9cc3103f02dfcbffdd3c1dfda47ac4
 Group:		Applications/System
 URL:		https://docs.docker.com/compose/
 Patch0:		remove-requires-upper-bound.patch
