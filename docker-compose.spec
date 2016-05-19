@@ -4,14 +4,16 @@
 
 Summary:	Multi-container orchestration for Docker
 Name:		docker-compose
-Version:	1.7.0
+Version:	1.7.1
 Release:	1
 License:	Apache v2.0
-Source0:	https://pypi.python.org/packages/source/d/docker-compose/%{name}-%{version}.tar.gz
-# Source0-md5:	7d9cc3103f02dfcbffdd3c1dfda47ac4
 Group:		Applications/System
-URL:		https://docs.docker.com/compose/
+# https://github.com/docker/compose/releases
+# https://pypi.python.org/pypi/docker-compose
+Source0:	https://pypi.python.org/packages/b6/20/0a65e13ac06c4693f28ded22b87882ca1750239bdc0a05d4a4df4e3a9faa/%{name}-%{version}.tar.gz
+# Source0-md5:	8c2b9a88c3aa46dbef422c7eb6802108
 Patch0:		remove-requires-upper-bound.patch
+URL:		https://docs.docker.com/compose/
 %if %{with tests}
 BuildRequires:	python-PyYAML
 BuildRequires:	python-docker
@@ -23,6 +25,7 @@ BuildRequires:	python-websocket-client
 %endif
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.714
+Requires:	docker >= 1.10.0
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -41,7 +44,6 @@ Docker-compose allows you to:
 %setup -q
 %patch0 -p1
 
-# Upstream uses an underscore here
 rm -r docker_compose.egg-info
 
 %build
