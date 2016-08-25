@@ -2,16 +2,16 @@
 # Conditional build:
 %bcond_with	tests	# do not perform "make test"
 
+%define		pypi_name	docker-compose
 Summary:	Multi-container orchestration for Docker
 Name:		docker-compose
-Version:	1.7.1
+Version:	1.8.0
 Release:	1
 License:	Apache v2.0
 Group:		Applications/System
 # https://github.com/docker/compose/releases
-# https://pypi.python.org/pypi/docker-compose
-Source0:	https://pypi.python.org/packages/b6/20/0a65e13ac06c4693f28ded22b87882ca1750239bdc0a05d4a4df4e3a9faa/%{name}-%{version}.tar.gz
-# Source0-md5:	8c2b9a88c3aa46dbef422c7eb6802108
+Source0:	https://files.pythonhosted.org/packages/source/d/%{pypi_name}/%{pypi_name}-%{version}.tar.gz
+# Source0-md5:	2e01829bfecfe18832281f6432b4afb4
 Patch0:		remove-requires-upper-bound.patch
 URL:		https://docs.docker.com/compose/
 %if %{with tests}
