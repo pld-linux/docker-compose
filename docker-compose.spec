@@ -2,16 +2,18 @@
 # Conditional build:
 %bcond_with	tests	# do not perform "make test"
 
+%define		module		compose
+%define		egg_name	docker_compose
 %define		pypi_name	docker-compose
 Summary:	Multi-container orchestration for Docker
 Name:		docker-compose
-Version:	1.8.0
+Version:	1.8.1
 Release:	1
 License:	Apache v2.0
 Group:		Applications/System
 # https://github.com/docker/compose/releases
 Source0:	https://files.pythonhosted.org/packages/source/d/%{pypi_name}/%{pypi_name}-%{version}.tar.gz
-# Source0-md5:	2e01829bfecfe18832281f6432b4afb4
+# Source0-md5:	561104fef1c11d5b39b4627fc7fccf8b
 Patch0:		remove-requires-upper-bound.patch
 URL:		https://docs.docker.com/compose/
 %if %{with tests}
@@ -59,7 +61,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc CHANGES.md CONTRIBUTING.md README.rst SWARM.md LICENSE
+%doc CHANGELOG.md CONTRIBUTING.md README.rst SWARM.md LICENSE
 %attr(755,root,root) %{_bindir}/%{name}
-%{py_sitescriptdir}/compose
-%{py_sitescriptdir}/docker_compose-%{version}-py*.egg-info
+%{py_sitescriptdir}/%{module}
+%{py_sitescriptdir}/%{egg_name}-%{version}-py*.egg-info
