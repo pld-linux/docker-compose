@@ -8,7 +8,7 @@
 Summary:	Multi-container orchestration for Docker
 Name:		docker-compose
 Version:	1.22.0
-Release:	1
+Release:	2
 License:	Apache v2.0
 Group:		Applications/System
 # https://github.com/docker/compose/releases
@@ -27,7 +27,7 @@ BuildRequires:	python-websocket-client
 %endif
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.714
-Requires:	docker >= 1.10.0
+Requires:	docker(engine) >= 1.10.0
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
