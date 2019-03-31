@@ -7,19 +7,20 @@
 %define		pypi_name	docker-compose
 Summary:	Multi-container orchestration for Docker
 Name:		docker-compose
-Version:	1.23.2
-Release:	2
+Version:	1.24.0
+Release:	1
 License:	Apache v2.0
 Group:		Applications/System
 # https://github.com/docker/compose/releases
 Source0:	https://files.pythonhosted.org/packages/source/d/%{pypi_name}/%{pypi_name}-%{version}.tar.gz
-# Source0-md5:	717831bff861e88d848477e2cd438030
+# Source0-md5:	8d12f41dd8d3abbc777ae2c277421f42
 Patch0:		remove-requires-upper-bound.patch
 URL:		https://docs.docker.com/compose/
 %if %{with tests}
 BuildRequires:	python-PyYAML
 BuildRequires:	python-docker
 BuildRequires:	python-docopt
+BuildRequires:	python-paramiko
 BuildRequires:	python-requests
 BuildRequires:	python-setuptools
 BuildRequires:	python-texttable
@@ -63,7 +64,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc CHANGELOG.md CONTRIBUTING.md README.rst SWARM.md LICENSE
+%doc CHANGELOG.md CONTRIBUTING.md README.md SWARM.md LICENSE
 %attr(755,root,root) %{_bindir}/%{name}
 %{py_sitescriptdir}/%{module}
 %{py_sitescriptdir}/%{egg_name}-%{version}-py*.egg-info
