@@ -8,7 +8,7 @@
 Summary:	Multi-container orchestration for Docker
 Name:		docker-compose
 Version:	1.24.0
-Release:	1
+Release:	2
 License:	Apache v2.0
 Group:		Applications/System
 # https://github.com/docker/compose/releases
