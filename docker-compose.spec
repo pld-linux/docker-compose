@@ -8,7 +8,7 @@
 Summary:	Multi-container orchestration for Docker
 Name:		docker-compose
 Version:	1.25.5
-Release:	1
+Release:	2
 License:	Apache v2.0
 Group:		Applications/System
 # https://github.com/docker/compose/releases
@@ -30,6 +30,7 @@ BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.714
 Requires:	docker(engine) >= 1.10.0
 Requires:	python-docker >= 3.6.0
+Requires:	python-paramiko >= 2.4.2
 Requires:	python-setuptools
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
