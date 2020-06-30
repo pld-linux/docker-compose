@@ -7,13 +7,13 @@
 %define		pypi_name	docker-compose
 Summary:	Multi-container orchestration for Docker
 Name:		docker-compose
-Version:	1.26.0
+Version:	1.26.1
 Release:	1
 License:	Apache v2.0
 Group:		Applications/System
 # https://github.com/docker/compose/releases
 Source0:	https://files.pythonhosted.org/packages/source/d/%{pypi_name}/%{pypi_name}-%{version}.tar.gz
-# Source0-md5:	f7d54de5db1f17322c09db8157bd160f
+# Source0-md5:	e57a3ffee709a449e2ca1f62f5423732
 Patch0:		remove-requires-upper-bound.patch
 URL:		https://docs.docker.com/compose/
 %if %{with tests}
@@ -29,7 +29,7 @@ BuildRequires:	python-websocket-client
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.714
 Requires:	docker(engine) >= 1.10.0
-Requires:	python-docker >= 4.2.1
+Requires:	python-docker >= 4.2.2
 Requires:	python-paramiko >= 2.4.2
 Requires:	python-setuptools
 BuildArch:	noarch
