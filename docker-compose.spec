@@ -7,31 +7,31 @@
 %define		pypi_name	docker-compose
 Summary:	Multi-container orchestration for Docker
 Name:		docker-compose
-Version:	1.26.2
+Version:	1.27.0
 Release:	1
 License:	Apache v2.0
 Group:		Applications/System
 # https://github.com/docker/compose/releases
 Source0:	https://files.pythonhosted.org/packages/source/d/%{pypi_name}/%{pypi_name}-%{version}.tar.gz
-# Source0-md5:	74fb79ebcb35619c2a87efd4e119dfd0
+# Source0-md5:	93dac92e2415ddb1bbd58d4a4cf8d828
 Patch0:		remove-requires-upper-bound.patch
 URL:		https://docs.docker.com/compose/
 %if %{with tests}
-BuildRequires:	python-PyYAML
-BuildRequires:	python-docker
-BuildRequires:	python-docopt
-BuildRequires:	python-paramiko
-BuildRequires:	python-requests
-BuildRequires:	python-setuptools
-BuildRequires:	python-texttable
-BuildRequires:	python-websocket-client
+BuildRequires:	python3-PyYAML
+BuildRequires:	python3-docker
+BuildRequires:	python3-docopt
+BuildRequires:	python3-paramiko
+BuildRequires:	python3-requests
+BuildRequires:	python3-setuptools
+BuildRequires:	python3-texttable
+BuildRequires:	python3-websocket-client
 %endif
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.714
 Requires:	docker(engine) >= 1.10.0
-Requires:	python-docker >= 4.2.2
-Requires:	python-paramiko >= 2.4.2
-Requires:	python-setuptools
+Requires:	python3-docker >= 4.3.1
+Requires:	python3-paramiko >= 2.4.2
+Requires:	python3-setuptools
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -53,12 +53,11 @@ Docker-compose allows you to:
 rm -r docker_compose.egg-info
 
 %build
-%py_build
+%py3_build
 
 %install
 rm -rf $RPM_BUILD_ROOT
-%py_install
-%py_postclean
+%py3_install
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -67,5 +66,5 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc CHANGELOG.md CONTRIBUTING.md README.md SWARM.md LICENSE
 %attr(755,root,root) %{_bindir}/%{name}
-%{py_sitescriptdir}/%{module}
-%{py_sitescriptdir}/%{egg_name}-%{version}-py*.egg-info
+%{py3_sitescriptdir}/%{module}
+%{py3_sitescriptdir}/%{egg_name}-%{version}-py*.egg-info
