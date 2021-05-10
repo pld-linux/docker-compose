@@ -7,13 +7,13 @@
 %define		pypi_name	docker-compose
 Summary:	Multi-container orchestration for Docker
 Name:		docker-compose
-Version:	1.29.1
+Version:	1.29.2
 Release:	1
 License:	Apache v2.0
 Group:		Applications/System
 # https://github.com/docker/compose/releases
 Source0:	https://files.pythonhosted.org/packages/source/d/%{pypi_name}/%{pypi_name}-%{version}.tar.gz
-# Source0-md5:	49c202544c7e2eadbbe45da8e838ae02
+# Source0-md5:	95accbca655abf086a61b94d6c3d94ca
 Patch0:		remove-requires-upper-bound.patch
 URL:		https://docs.docker.com/compose/
 %if %{with tests}
