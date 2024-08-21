@@ -1,38 +1,24 @@
-#
-# Conditional build:
-%bcond_with	tests	# do not perform "make test"
+%define		vendor_version	2.29.2
 
-%define		module		compose
-%define		egg_name	docker_compose
-%define		pypi_name	docker-compose
 Summary:	Multi-container orchestration for Docker
 Name:		docker-compose
-Version:	1.29.2
-Release:	4
+Version:	2.29.2
+Release:	1
 License:	Apache v2.0
 Group:		Applications/System
 # https://github.com/docker/compose/releases
-Source0:	https://files.pythonhosted.org/packages/source/d/%{pypi_name}/%{pypi_name}-%{version}.tar.gz
-# Source0-md5:	95accbca655abf086a61b94d6c3d94ca
-Patch0:		remove-requires-upper-bound.patch
+Source0:	https://github.com/docker/compose/archive/v%{version}/%{name}-%{version}.tar.gz
+# Source0-md5:	98a9b86671ed78e40a85a8082cc97c0c
+Source1:	%{name}-vendor-%{vendor_version}.tar.xz
+# Source1-md5:	f11756768fbb007d0d354d35f82c41b7
+Source2:	docker-compose.sh
 URL:		https://docs.docker.com/compose/
-%if %{with tests}
-BuildRequires:	python3-PyYAML
-BuildRequires:	python3-docker
-BuildRequires:	python3-docopt
-BuildRequires:	python3-paramiko
-BuildRequires:	python3-requests
-BuildRequires:	python3-setuptools
-BuildRequires:	python3-texttable
-BuildRequires:	python3-websocket-client
-%endif
-BuildRequires:	rpm-pythonprov
-BuildRequires:	rpmbuild(macros) >= 1.714
-Requires:	docker(engine) >= 1.10.0
-Requires:	python3-docker >= 4.4.4
-Requires:	python3-paramiko >= 2.4.2
-Requires:	python3-setuptools
-BuildArch:	noarch
+BuildRequires:	golang >= 1.21.0
+BuildRequires:	rpmbuild(macros) >= 2.009
+BuildRequires:	tar >= 1:1.22
+BuildRequires:	xz
+Requires:	docker-ce-cli
+ExclusiveArch:	%go_arches
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -47,24 +33,28 @@ Docker-compose allows you to:
   entire app.
 
 %prep
-%setup -q
-%patch0 -p1
+%setup -q -n compose-%{version} -a1
 
-rm -r docker_compose.egg-info
+%{__mv} compose-%{vendor_version}/vendor .
 
 %build
-%py3_build
+%{__make} \
+	VERSION="%{version}" \
+	BUILD_FLAGS="-v -mod=vendor"
 
 %install
 rm -rf $RPM_BUILD_ROOT
-%py3_install
+
+install -d $RPM_BUILD_ROOT{%{_bindir},%{_libexecdir}/docker/cli-plugins}
+
+cp -p bin/build/docker-compose $RPM_BUILD_ROOT%{_libexecdir}/docker/cli-plugins
+cp -p %{SOURCE2} $RPM_BUILD_ROOT%{_bindir}/docker-compose
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc CHANGELOG.md CONTRIBUTING.md README.md SWARM.md LICENSE
-%attr(755,root,root) %{_bindir}/%{name}
-%{py3_sitescriptdir}/%{module}
-%{py3_sitescriptdir}/%{egg_name}-%{version}-py*.egg-info
+%doc CONTRIBUTING.md README.md LICENSE
+%attr(755,root,root) %{_bindir}/docker-compose
+%attr(755,root,root) %{_libexecdir}/docker/cli-plugins/docker-compose
