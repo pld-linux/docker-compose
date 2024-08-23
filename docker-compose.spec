@@ -21,6 +21,8 @@ Requires:	docker-ce-cli
 ExclusiveArch:	%go_arches
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
+%define		_debugsource_packages	0
+
 %description
 Multi-container orchestration for Docker
 
