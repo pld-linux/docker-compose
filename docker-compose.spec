@@ -1,19 +1,19 @@
-%define		vendor_version	2.33.1
+%define		vendor_version	2.37.3
 
 Summary:	Multi-container orchestration for Docker
 Name:		docker-compose
-Version:	2.33.1
+Version:	2.37.3
 Release:	1
 License:	Apache v2.0
 Group:		Applications/System
 # https://github.com/docker/compose/releases
 Source0:	https://github.com/docker/compose/archive/v%{version}/%{name}-%{version}.tar.gz
-# Source0-md5:	25b2e28a0dd4eb5141915ba91b8dbcc1
+# Source0-md5:	3b5f6c582d791403f23a0e2c6c3181c8
 Source1:	%{name}-vendor-%{vendor_version}.tar.xz
-# Source1-md5:	115906d7b51c96f7380d068576e42b84
+# Source1-md5:	3938ed853cd0653f8ccac3772cdea34e
 Source2:	docker-compose.sh
 URL:		https://docs.docker.com/compose/
-BuildRequires:	golang >= 1.22.10
+BuildRequires:	golang >= 1.23.8
 BuildRequires:	rpmbuild(macros) >= 2.009
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xz
